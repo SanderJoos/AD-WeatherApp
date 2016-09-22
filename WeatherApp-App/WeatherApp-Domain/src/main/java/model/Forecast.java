@@ -5,15 +5,13 @@ import java.time.LocalDateTime;
 public class Forecast {
 
 	private double temperature;
-	private City city;
 	private LocalDateTime timeStamp;
 	
 	public Forecast(){
 		
 	}
 	
-	public Forecast(double temperature, City city, LocalDateTime timeStamp){
-		this.setCity(city);
+	public Forecast(double temperature, LocalDateTime timeStamp){
 		this.setTemperature(temperature);
 		this.setTimeStamp(timeStamp);
 	}
@@ -24,14 +22,6 @@ public class Forecast {
 
 	public void setTemperature(double temperature) {
 		this.temperature = temperature;
-	}
-
-	public City getCity() {
-		return city;
-	}
-
-	public void setCity(City city) {
-		this.city = city;
 	}
 
 	public LocalDateTime getTimeStamp() {
