@@ -1,6 +1,8 @@
 package model;
 
-public class DayForecast {
+public class Forecast {
 
-	private double temp;
+	private double temperature;
+	private City city;
+	
 }
