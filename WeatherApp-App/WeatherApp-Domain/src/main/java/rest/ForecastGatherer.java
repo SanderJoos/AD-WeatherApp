@@ -10,7 +10,7 @@ import javax.json.JsonArray;
 
 public class ForecastGatherer {
 	
-	
+	private final String URL = "";
 	
 	Client client=ClientBuilder.newClient();
 	//TODO ADD REST URL
