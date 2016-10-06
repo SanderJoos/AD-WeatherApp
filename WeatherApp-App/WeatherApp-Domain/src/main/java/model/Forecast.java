@@ -4,24 +4,16 @@ import java.time.LocalDateTime;
 
 public class Forecast {
 
-	private double temperature;
 	private LocalDateTime timeStamp;
+	private String descripton;
 	
 	public Forecast(){
 		
 	}
 	
-	public Forecast(double temperature, LocalDateTime timeStamp){
-		this.setTemperature(temperature);
+	public Forecast(LocalDateTime timeStamp, String description){
 		this.setTimeStamp(timeStamp);
-	}
-
-	public double getTemperature() {
-		return temperature;
-	}
-
-	public void setTemperature(double temperature) {
-		this.temperature = temperature;
+		this.setDescripton(description);
 	}
 
 	public LocalDateTime getTimeStamp() {
@@ -30,6 +22,14 @@ public class Forecast {
 
 	public void setTimeStamp(LocalDateTime timeStamp) {
 		this.timeStamp = timeStamp;
+	}
+
+	public String getDescripton() {
+		return descripton;
+	}
+
+	public void setDescripton(String descripton) {
+		this.descripton = descripton;
 	}
 	
 	
