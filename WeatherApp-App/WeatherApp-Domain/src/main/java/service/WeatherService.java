@@ -32,4 +32,8 @@ public class WeatherService{
 	public List<Forecast> getForecastForCityStrings(String cityName, String country) {
 		return db.getForecastForCityStrings(cityName, country);
 	}
+	
+	public String getForecastForCityStringsAsString(String city, String country){
+		return null;
+	}
 }

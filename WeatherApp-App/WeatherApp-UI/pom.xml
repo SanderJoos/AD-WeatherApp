@@ -3,7 +3,15 @@
   <parent>
     <groupId>WeatherApp</groupId>
     <artifactId>WeatherApp-App</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
   </parent>
   <artifactId>WeatherApp-UI</artifactId>
+  
+  <dependencies>
+  	<dependency>
+  	<groupId>WeatherApp</groupId>
+    <artifactId>WeatherApp-Domain</artifactId>
+    <version>0.0.1</version>
+  	</dependency>
+  </dependencies>
 </project>
