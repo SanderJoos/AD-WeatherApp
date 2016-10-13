@@ -14,10 +14,11 @@ import javax.json.JsonArray;
 public class ForecastGatherer {
 
     private final String URL = "http://api.wunderground.com/api/b2d97c37f90887e5/conditions/q/";
+    private final String LeuvenURL = "http://api.wunderground.com/api/b2d97c37f90887e5/forecast10day/q/BE/Leuven.json";
     public City getCityForecast(){
 
     Client client=ClientBuilder.newClient();
-    WebTarget target = client.target(URL+"BE"+"/"+"Leuven"+".jsp");
+    WebTarget target = client.target(LeuvenURL);
     JsonArray response=target.request(MediaType.APPLICATION_JSON)
             .get(JsonArray.class);
     // do stuff with results after this
