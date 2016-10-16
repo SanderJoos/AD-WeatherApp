@@ -1,4 +1,10 @@
 package rest;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -19,14 +25,29 @@ public class ForecastGatherer {
     public City getCityForecast(City city){
 
     	Client client=ClientBuilder.newClient();
+        ObjectMapper objectMapper=new ObjectMapper();
     	WebTarget target = client.target(LeuvenURL);
-    	JsonArray response=target.request(MediaType.APPLICATION_JSON).get(JsonArray.class);
-    	JsonArray forecast = response.getJsonArray(1);
-    	JsonArray forecast_txt = forecast.getJsonArray(0);
-    	JsonArray forecastDays = forecast_txt.getJsonArray(1);
-    	this.addDailyForecastToCity(city, forecastDays);
+    	String response=target.request(MediaType.APPLICATION_JSON).get(String.class);
+        try {
+            JsonNode rootNode=objectMapper.readTree(response);
+            JsonNode forecastNode=rootNode.path("forecast");
+            JsonNode txt_forecastNode=forecastNode.path("txt_forecast");
+            JsonNode forecastday=txt_forecastNode.path("forecastday");
+            Iterator<JsonNode> elements=forecastday.elements();
+            System.out.println("This still works");
+            while(elements.hasNext()){
+                JsonNode actualForecast=elements.next();
+                JsonNode title=actualForecast.path("title");
+                JsonNode fcttext_metric=actualForecast.path("fcttext_metric");
+                System.out.println(title.textValue());
+                System.out.println(fcttext_metric.textValue());
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(ForecastGatherer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    	//this.addDailyForecastToCity(city, forecastDays);
     	City cityresp=new City(city.getCountry(),city.getCityName());
-    	System.out.println(response);
+    	//System.out.println(response);
     	return cityresp;
     }
     
