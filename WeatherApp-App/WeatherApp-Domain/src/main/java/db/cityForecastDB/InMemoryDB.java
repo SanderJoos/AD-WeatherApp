@@ -5,14 +5,18 @@ import java.util.List;
 
 import model.City;
 import model.Forecast;
+import rest.ForecastGatherer;
 
 
 public class InMemoryDB implements ICityForecastDB{
 	
 	private HashMap<City, List<Forecast>> forecastsForCities;
 	
+	private ForecastGatherer gatherer;
+	
 	public InMemoryDB(){
 		this.forecastsForCities = new HashMap<City, List<Forecast>>();
+		this.gatherer = new ForecastGatherer();
 	}	
 
 	public HashMap<City, List<Forecast>> getForecastsForCities() {
@@ -20,7 +24,10 @@ public class InMemoryDB implements ICityForecastDB{
 	}
 
 	public List<Forecast> getForecastForCity(City city) {
-		return this.getForecastsForCities().get(city);
+		if(this.forecastsForCities.containsKey(city)){
+			return this.getForecastsForCities().get(city);
+		}
+		return gatherer.getCityForecast(city).getForecasts();
 	}
 
 	public void addForeCastToCity(City city, Forecast forecast) {
@@ -45,8 +52,4 @@ public class InMemoryDB implements ICityForecastDB{
 		City city = new City(country, cityName);
 		return this.getForecastForCity(city);
 	}
-	
-	
-	
-
 }
