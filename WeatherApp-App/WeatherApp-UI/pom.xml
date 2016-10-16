@@ -9,9 +9,9 @@
   
   <dependencies>
   	<dependency>
-  	<groupId>WeatherApp</groupId>
-    <artifactId>WeatherApp-Domain</artifactId>
-    <version>0.0.1</version>
+            <groupId>WeatherApp</groupId>
+            <artifactId>WeatherApp-Domain</artifactId>
+            <version>0.0.1</version>
   	</dependency>
   </dependencies>
 </project>

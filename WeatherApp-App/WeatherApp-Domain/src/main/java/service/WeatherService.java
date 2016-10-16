@@ -35,9 +35,9 @@ public class WeatherService{
 	
 	public String getForecastForCityStringsAsString(String city, String country){
 		List<Forecast> forecasts = db.getForecastForCityStrings(city, country);
-		String toReturn = city + ", " + country + "/n";
+		String toReturn = city + ", " + country + "\n";
 		for(Forecast f : forecasts){
-			toReturn += f.getDescripton() + "/n";
+			toReturn += f.getDescripton() + "\n";
 		}
 		return toReturn;
 	}

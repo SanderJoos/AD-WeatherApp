@@ -28,6 +28,7 @@ public class ForecastGatherer {
         ObjectMapper objectMapper=new ObjectMapper();
     	WebTarget target = client.target(LeuvenURL);
     	String response=target.request(MediaType.APPLICATION_JSON).get(String.class);
+        City cityresp=new City(city.getCountry(),city.getCityName());
         try {
             JsonNode rootNode=objectMapper.readTree(response);
             JsonNode forecastNode=rootNode.path("forecast");
@@ -39,27 +40,27 @@ public class ForecastGatherer {
                 JsonNode actualForecast=elements.next();
                 JsonNode title=actualForecast.path("title");
                 JsonNode fcttext_metric=actualForecast.path("fcttext_metric");
-                System.out.println(title.textValue());
-                System.out.println(fcttext_metric.textValue());
+                cityresp.addForecast(new Forecast(title.textValue() +":" + fcttext_metric.textValue()));
+                //System.out.println(title.textValue());
+                //System.out.println(fcttext_metric.textValue());
             }
         } catch (IOException ex) {
             Logger.getLogger(ForecastGatherer.class.getName()).log(Level.SEVERE, null, ex);
         }
     	//this.addDailyForecastToCity(city, forecastDays);
-    	City cityresp=new City(city.getCountry(),city.getCityName());
     	//System.out.println(response);
     	return cityresp;
     }
     
-    private void addDailyForecastToCity(City city, JsonArray forecastDays){
-    	JsonObject day;
-    	for(int i=0; i < 20; i+=2){
-    		day = forecastDays.getJsonObject(i);
-    		String title = day.getString("title");
-    		String description = day.getString("fcttext_metric");
-    		Forecast forecast = new Forecast(title +":" + description);
-    		city.addForecast(forecast);
-    	}
-    	
-    }
+//    private void addDailyForecastToCity(City city, JsonArray forecastDays){
+//    	JsonObject day;
+//    	for(int i=0; i < 20; i+=2){
+//    		day = forecastDays.getJsonObject(i);
+//    		String title = day.getString("title");
+//    		String description = day.getString("fcttext_metric");
+//    		Forecast forecast = new Forecast(title +":" + description);
+//    		city.addForecast(forecast);
+//    	}
+//    	
+//    }
 }
