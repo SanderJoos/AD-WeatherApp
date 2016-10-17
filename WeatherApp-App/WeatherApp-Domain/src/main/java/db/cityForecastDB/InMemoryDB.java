@@ -27,7 +27,9 @@ public class InMemoryDB implements ICityForecastDB{
 		if(this.forecastsForCities.containsKey(city)){
 			return this.getForecastsForCities().get(city);
 		}
-		return gatherer.getCityForecast(city).getForecasts();
+		List<Forecast> forecasts = gatherer.getCityForecast(city).getForecasts();
+                this.forecastsForCities.put(city, forecasts);
+                return forecasts;
 	}
 
 	public void addForeCastToCity(City city, Forecast forecast) {
