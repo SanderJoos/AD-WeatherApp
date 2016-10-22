@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-    <artifactId>WeatherApp-App</artifactId>
-    <groupId>WeatherApp</groupId>
-    <version>0.0.1</version>
-  </parent>
+        <artifactId>WeatherApp-App</artifactId>
+        <groupId>WeatherApp</groupId>
+        <version>0.0.1</version>
+    </parent>
 
     <groupId>WeatherApp</groupId>
     <artifactId>WeatherApp-Rest</artifactId>
@@ -25,6 +25,47 @@
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>WeatherApp</groupId>
+            <artifactId>WeatherApp-Domain</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>
+                org.glassfish.jersey.core
+            </groupId>
+            <artifactId>
+                jersey-client
+            </artifactId>
+            <version>
+                2.23.2
+            </version>
+            <scope>
+                provided
+            </scope>
+        </dependency>
+        <dependency>
+            <groupId>
+                org.glassfish.jersey.media
+            </groupId>
+            <artifactId>
+                jersey-media-json-jackson
+            </artifactId>
+            <version>
+                2.23.2
+            </version>
+        </dependency>
+        <dependency>
+            <groupId>
+                org.glassfish.jersey.core
+            </groupId>
+            <artifactId>
+                jersey-server
+            </artifactId>
+            <version>
+                2.23.2
+            </version>
         </dependency>
     </dependencies>
 
