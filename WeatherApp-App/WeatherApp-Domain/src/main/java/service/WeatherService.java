@@ -2,9 +2,11 @@ package service;
 import java.util.List;
 
 import db.cityForecastDB.*;
+import javax.enterprise.context.ApplicationScoped;
 import model.City;
 import model.Forecast;
 
+@ApplicationScoped
 public class WeatherService{
 	
 	private ICityForecastDB db;
