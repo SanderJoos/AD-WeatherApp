@@ -12,4 +12,5 @@ public interface ICityForecastDB {
 	void addListOfForecastsToCity(City city, List<Forecast> forecasts);
 	void addCityToDB(City city);
 	List<Forecast> getForecastForCityStrings(String cityName, String country);
+        void storeForecastInDb(City city);
 }

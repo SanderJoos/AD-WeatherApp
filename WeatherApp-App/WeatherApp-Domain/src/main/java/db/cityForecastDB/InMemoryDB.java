@@ -1,5 +1,6 @@
 package db.cityForecastDB;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
@@ -28,12 +29,23 @@ public class InMemoryDB implements ICityForecastDB {
         return forecastsForCities;
     }
 
+    public void addForecastForCityInMemory(City city, List<Forecast> forecast) {
+        if (this.forecastsForCities.containsKey(city)) {
+            this.forecastsForCities.remove(city);
+            this.forecastsForCities.put(city, forecast);
+        } else {
+            this.forecastsForCities.put(city, forecast);
+        }
+    }
+
     public List<Forecast> getForecastForCity(City city) {
+        List<Forecast> forecasts = new ArrayList<Forecast>();
         if (this.forecastsForCities.containsKey(city)) {
             return this.getForecastsForCities().get(city);
+        } else {
+            forecasts = gatherer.getCityForecast(city).getForecasts();
+            this.addForecastForCityInMemory(city, forecasts);
         }
-        List<Forecast> forecasts = gatherer.getCityForecast(city).getForecasts();
-        this.forecastsForCities.put(city, forecasts);
         return forecasts;
     }
 
@@ -58,5 +70,9 @@ public class InMemoryDB implements ICityForecastDB {
     public List<Forecast> getForecastForCityStrings(String cityName, String country) {
         City city = new City(country, cityName);
         return this.getForecastForCity(city);
+    }
+
+    public void storeForecastInDb(City city) {
+        this.getForecastForCity(city);
     }
 }

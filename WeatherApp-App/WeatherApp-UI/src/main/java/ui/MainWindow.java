@@ -19,20 +19,23 @@ public class MainWindow {
     }
 
     public void launch() {
-        
+
         //only local, in case of failure api on server should be called
         //try-catch should do it
-        String URL = "http://localhost:15148/WeatherApp-Rest/API/weather/BE-Leuven";
-        Client client=ClientBuilder.newClient();
-        ObjectMapper objectMapper=new ObjectMapper();
-    	WebTarget target = client.target(URL);
+        String URL="";
+        URL = "http://localhost:15148/WeatherApp-Rest/API/weather/";
+        String LeuvenURL = "http://localhost:15148/WeatherApp-Rest/API/weather/BE-Leuven";
+        Client client = ClientBuilder.newClient();
+        ObjectMapper objectMapper = new ObjectMapper();
 
-        
-            String country = JOptionPane.showInputDialog(null, "What country?");
-            String city = JOptionPane.showInputDialog(null, "What city?");
-            String forecast=target.request(MediaType.TEXT_PLAIN).get(String.class);
-            JOptionPane.showMessageDialog(null, forecast);
-        
+        String country = JOptionPane.showInputDialog(null, "What country?");
+        String city = JOptionPane.showInputDialog(null, "What city?");
+        URL += country + "-" + city;
+        System.out.println(URL);
+        WebTarget target = client.target(URL);
+        String forecast = target.request(MediaType.TEXT_PLAIN).get(String.class);
+        JOptionPane.showMessageDialog(null, forecast);
+
     }
 
 }
