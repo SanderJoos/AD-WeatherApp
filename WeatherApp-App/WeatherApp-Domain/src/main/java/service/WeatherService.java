@@ -57,7 +57,7 @@ public class WeatherService {
         return toReturn;
     }
 
-    @Schedule(hour="*", minute="*", persistent = false)
+    @Schedule(hour="*", minute="*/10", persistent = false)
     public void getSomeForecasts() {
         Map<String, String> citiesInCountries = new HashMap<String, String>();
         citiesInCountries.put("Brussels", "BE");
