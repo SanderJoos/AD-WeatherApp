@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.enterprise.context.Dependent;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -16,7 +17,7 @@ import model.Forecast;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 
-
+@Dependent
 public class ForecastGatherer {
 
     private final String URL = "http://api.wunderground.com/api/b2d97c37f90887e5/conditions/q/";

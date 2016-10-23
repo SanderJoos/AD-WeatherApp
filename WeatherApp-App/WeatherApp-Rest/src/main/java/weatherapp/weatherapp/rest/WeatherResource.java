@@ -5,6 +5,7 @@
  */
 package weatherapp.weatherapp.rest;
 
+import javax.inject.Inject;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -24,13 +25,13 @@ import service.WeatherService;
 @Path("/weather")
 public class WeatherResource {
     
+    @Inject
     private WeatherService service;
 
     /**
      * Creates a new instance of WeatherResource
      */
     public WeatherResource() {
-        this.service = new WeatherService();
     }
 
     @GET

@@ -1,46 +1,49 @@
 package service;
+
 import java.util.List;
 
 import db.cityForecastDB.*;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
 import model.City;
 import model.Forecast;
 
-@ApplicationScoped
-public class WeatherService{
-	
-	private ICityForecastDB db;
-	
-	public WeatherService(){
-		this.db = new InMemoryDB();
-	}
+@Dependent
+public class WeatherService {
 
-	public List<Forecast> getForecastForCity(City city) {
-		return db.getForecastForCity(city);
-	}
+    @Inject
+    private ICityForecastDB db;
 
-	public void addForeCastToCity(City city, Forecast forecast) {
-		db.addForeCastToCity(city, forecast);
-	}
+    public WeatherService() {
+    }
 
-	public void addListOfForecastsToCity(City city, List<Forecast> forecasts) {
-		db.addListOfForecastsToCity(city, forecasts);
-	}
+    public List<Forecast> getForecastForCity(City city) {
+        return db.getForecastForCity(city);
+    }
 
-	public void addCityToDB(City city) {
-		db.addCityToDB(city);
-	}
+    public void addForeCastToCity(City city, Forecast forecast) {
+        db.addForeCastToCity(city, forecast);
+    }
 
-	public List<Forecast> getForecastForCityStrings(String cityName, String country) {
-		return db.getForecastForCityStrings(cityName, country);
-	}
-	
-	public String getForecastForCityStringsAsString(String city, String country){
-		List<Forecast> forecasts = db.getForecastForCityStrings(city, country);
-		String toReturn = city + ", " + country + "\n";
-		for(Forecast f : forecasts){
-			toReturn += f.getDescripton() + "\n";
-		}
-		return toReturn;
-	}
+    public void addListOfForecastsToCity(City city, List<Forecast> forecasts) {
+        db.addListOfForecastsToCity(city, forecasts);
+    }
+
+    public void addCityToDB(City city) {
+        db.addCityToDB(city);
+    }
+
+    public List<Forecast> getForecastForCityStrings(String cityName, String country) {
+        return db.getForecastForCityStrings(cityName, country);
+    }
+
+    public String getForecastForCityStringsAsString(String city, String country) {
+        List<Forecast> forecasts = db.getForecastForCityStrings(city, country);
+        String toReturn = city + ", " + country + "\n";
+        for (Forecast f : forecasts) {
+            toReturn += f.getDescripton() + "\n";
+        }
+        return toReturn;
+    }
 }
