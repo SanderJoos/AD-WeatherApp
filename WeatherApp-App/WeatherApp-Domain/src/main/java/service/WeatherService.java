@@ -47,7 +47,7 @@ public class WeatherService {
         List<Forecast> forecasts = db.getForecastForCityStrings(city, country);
         String toReturn = city + ", " + country + "\n";
         if (forecasts.isEmpty()) {
-            toReturn += "No match found, did you try using english city names (Like Antwerp and Brussels) \n also the correct city abreviation, like BE? \n "
+            toReturn += "No match found, did you try using english city names (Like Antwerp and Brussels) \n also the correct country abreviation, like BE? \n "
                     + "Nederlands kan ook werken, de API biedt steden aan zoals ook Gent en Zaventem, \n inclusief ook Antwerpen, Brussel en Leuven";
         } else {
             for (Forecast f : forecasts) {
